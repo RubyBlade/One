@@ -14,6 +14,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
     get new_product_url
     assert_response :success
+    assert_select 'form[action="/products"]' # Проверка наличия формы для создания продукта
   end
 
   test "should create product" do
@@ -32,6 +33,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test "should get edit" do
     get edit_product_url(@product)
     assert_response :success
+    assert_select 'form[action=?]', product_path(@product) # Проверка наличия формы редактирования
   end
 
   test "should update product" do
